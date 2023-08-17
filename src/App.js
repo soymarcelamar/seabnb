@@ -6,7 +6,8 @@ import Stays from "./components/Stays/Stays";
 import  { useState, useEffect} from "react";
 import data from "./stays.json";
 
-import'./App.css';
+import './App.css';
+import { Box } from "@mui/material";
 
 function App() {
   const [location, setLocation] = useState("");
@@ -34,42 +35,49 @@ function App() {
   }, [location, adultCounter, childrenCounter]);
 
   return (
-    <div className="App">
-      <div>
-        {isFiltered ? (
-          <Filter
-            location={location}
-            handleLocation={handleLocation}
-            onClickNav={setLocation}
-            offModal={closeModal}
-            adultsTotal={adultCounter}
-            childrenTotal={childrenCounter}
-            adultsLess={() => setAdultCounter(adultCounter - 1)}
-            adultsPlus={() => setAdultCounter(adultCounter + 1)}
-            childrenLess={() => setChildrenCounter(childrenCounter - 1)}
-            childrenPlus={() => setChildrenCounter(childrenCounter + 1)}
-          />
-        ) :
-          <Home onClickMod={handleModal} />}
-      </div>
-      <div>
-        <Stays count={beds.length} />
-        <section className= "CardContainer">
-          {beds.map((cards) => (
-            <Card
-              key={cards.id}
-              image={cards.photo}
-              superHost={cards.superHost}
-              type={cards.type}
-              beds={cards.beds}
-              rating={cards.rating}
-              title={cards.title}
+    <Box>
+        <div>
+          {isFiltered ? (
+            <Filter
+              location={location}
+              handleLocation={handleLocation}
+              onClickNav={setLocation}
+              offModal={closeModal}
+              adultsTotal={adultCounter}
+              childrenTotal={childrenCounter}
+              adultsLess={() => setAdultCounter(adultCounter - 1)}
+              adultsPlus={() => setAdultCounter(adultCounter + 1)}
+              childrenLess={() => setChildrenCounter(childrenCounter - 1)}
+              childrenPlus={() => setChildrenCounter(childrenCounter + 1)}
             />
-          ))}
-        </section>
-       
+          ) :
+            <Home onClickMod={handleModal} />}
+        </div>
+        <div>
+          <Stays count={beds.length} />
+        <Box
+          sx={{
+            display: 'flex',
+            width: '100%',
+            flexDirection: 'row',
+            flexWrap:  'wrap',
+            justifyContent: 'space-evenly',
+          }}
+        >
+            {beds.map((cards) => (
+              <Card
+                key={cards.id}
+                image={cards.photo}
+                superHost={cards.superHost}
+                type={cards.type}
+                beds={cards.beds}
+                rating={cards.rating}
+                title={cards.title}
+              />
+            ))}
+          </Box>
       </div>
-    </div>
+      </Box>
   );
 }
 

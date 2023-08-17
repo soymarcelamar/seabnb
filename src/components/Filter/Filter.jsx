@@ -1,6 +1,8 @@
 import data from "../../stays.json";
 import locationIcon from "../../assets/img/locationIcon.png";
 
+import { Box } from "@mui/material";
+
 const Search = ({
     location,
     handleLocation,
@@ -17,93 +19,201 @@ const Search = ({
     const buttonSearchArray = [...new Set(buttonSearch)];
 
     return (
-        <div className="Search-filter">
-            <form className="form-location">
-                <div className="location-container">
-                    <input
-                        value={location}
-                        onChange={handleLocation}
-                        type="text"
-                        name="location"
-                        id="location"
-                        className="location-input"
-                        placeholder="Helsinki"
+        <Box
+            sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                flexWrap:'wrap',
+                justifyContent: 'center',
+                alignItems: 'baseline',
+                padding: '25px',
+            }}
+        >
+            <Box component="form"
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-evenly',
+                    height: '200px',
+                }}
+            >
+                <Box component="input"
+                    sx={{
+                        border: '1px solid #D7137F',
+                        borderRadius: '25px',
+                        height: '35px',
+                        width: '300px',
+                        textAlign: 'center',
+                        fontFamily: 'Monserrate',
+                    }}
+                    value={location}
+                    onChange={handleLocation}
+                    type="text"
+                    name="location"
+                    id="location"
+                    placeholder="Helsinki, Finland"
                     />
-                </div>
                 {buttonSearchArray.map((element) => (
-                    <div className="City-container">
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            justifyContent: 'flex-start',
+                            alignItems: 'center',
+                        }}
+                    >
                         <img className="location-icon" alt="Location icon" src={locationIcon} />
-                        <input
-                            className="city"
+                        <Box component="input" 
+                            sx={{
+                                border: 'none',
+                                backgroundColor: 'transparent',
+                                fontFamily: 'Monserrate'
+                            }}
                             type="button"
                             onClick={() => onClickNav(element)}
                             value={element}
-                        />
-                    </div>
+                        /> 
+                    </Box>
                 ))}
-            </form>
-            <div>
-                <form className="Form-guest">
-                    <div className="Guest-container">
-                        <label>Guest</label>
-                        <input
-                            className="Guest-input"
-                            value={adultsTotal + childrenTotal}
+            </Box>
+            <Box
+             sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'flex-start',
+                padding: '25px',
+            }}>
+                <Box component="form"
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-evenly',
+                    height: '200px',
+                }}
+            >
+                <Box component="input"
+                    sx={{
+                        border: '1px solid #D7137F',
+                        borderRadius: '25px',
+                        height: '35px',
+                        width: '300px',
+                        textAlign: 'center',
+                        fontFamily: 'Monserrate',
+                    }}
+                        value={adultsTotal + childrenTotal}
                         />
-                    </div>
-                    <div className="Guest-number-container">
-                        <label className="label">Adult</label>
+                    <Box
+                        sx={{
+                            fontFamily: 'Monserrate',
+                            fontSize: '14px'
+                        }}
+                    >
+                        <label>Adult </label>
                         <span>Ages 13 or above</span>
-                        <div>
-                            <button
+                        <Box sx={{ padding:'5px' }}>
+                            <Box component="button"
+                                sx={{
+                                    border: 'none',
+                                    backgroundColor: '#D7137F',
+                                    color: 'white',
+                                    borderRadius: '50%',
+                                    width: '25px',
+                                    height: '25px',
+                                }}  
                                 type="button"
-                                className="Less"
                                 onClick={adultsLess}
                                 disabled={adultsTotal <= 0}
                             >
                                 -
-                            </button>
-                            <input className="Number-total" value={adultsTotal} />
-                            <button
+                            </Box>
+                            <Box component="input"
+                                sx={{
+                                    width: '25px',
+                                    border: 'none',
+                                    textAlign: 'center',
+                                }}
+                                value={adultsTotal} />
+                            <Box component="button"
+                                sx={{
+                                    border: 'none',
+                                    backgroundColor: '#D7137F',
+                                    color: 'white',
+                                    borderRadius: '50%',
+                                    width: '25px',
+                                    height: '25px',
+                                }}   
                                 type="button"
-                                className="Plus"
                                 onClick={adultsPlus}
                             >
                                 +
-                            </button>
-                        </div>
-                    </div>
-                    <div className="Guest-number-container">
-                        <label className="label">Children</label>
+                            </Box>
+                        </Box>
+                    </Box>
+                    <Box
+                        sx={{
+                            fontFamily: 'Monserrate',
+                            fontSize: '14px'
+                        }}
+                    >
+                        <label>Children </label>
                         <span>Ages 2-12</span>
-                        <div>
-                            <button
+                        <Box sx={{ padding:'5px' }}>
+                        <Box component="button"
+                                sx={{
+                                    border: 'none',
+                                    backgroundColor: '#D7137F',
+                                    color: 'white',
+                                    borderRadius: '50%',
+                                    width: '25px',
+                                    height: '25px',
+                                }}
                                 type="button"
-                                className="Less"
                                 onClick={childrenLess}
                                 disabled={childrenTotal <= 0}
                             >
                                 -
-                            </button>
-                            <input className="Number-total" value={childrenTotal} />
-                            <button
+                            </Box>
+                            <Box component="input"
+                                sx={{
+                                    width: '25px',
+                                    border: 'none',
+                                    textAlign: 'center',
+                                }}
+                                value={childrenTotal} />
+                            <Box component="button"
+                                sx={{
+                                    border: 'none',
+                                    backgroundColor: '#D7137F',
+                                    color: 'white',
+                                    borderRadius: '50%',
+                                    width: '25px',
+                                    height: '25px',
+                                }}  
                                 type="button"
-                                className="Plus"
                                 onClick={childrenPlus}
                             >
                                 +
-                            </button>
-                        </div>
-                    </div>
-                </form>
+                            </Box>
+                        </Box>
+                    </Box>
+                </Box>
+            </Box>
+            <div>
+            <Box component="button"
+                sx={{
+                    border: 'none',
+                    backgroundColor: '#D7137F',
+                    color: 'white',
+                    borderRadius: '50%',
+                    width: '25px',
+                    height: '25px',
+                    }}  
+                    onClick={offModal}>
+                X
+            </Box>
             </div>
-            <div className="Close">
-                <button
-                    className="close"
-                    value="X"
-                    onClick={offModal} />
-            </div>
-        </div>
+        </Box>
     );
 };
 export default Search;
